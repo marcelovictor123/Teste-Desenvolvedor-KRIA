@@ -1,0 +1,76 @@
+﻿@model List<RepositoriosModel>
+@{
+    ViewData["Title"] = "Meus repositorios";
+}
+
+<div class="text-center">
+    <div class="a-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" role="button" asp-controller="Repositorios" asp-action="Criar">Adicionar novo repositorio</a>
+        <a class="btn btn-success" role="button" asp-action="Favoritos">Meus favoritos</a>
+        <button class="btn btn-danger" onclick="confirmDelete()">Excluir todos os repositórios</button>
+
+    </div>
+
+   
+
+    <br />
+
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+    <br />
+    <h1 class="display-4">Meus repositorios</h1>
+    <table class="table" id="table-repositorio">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Linguagem</th>
+                <th scope="col">Ultima data de atualização</th>
+                <th scope="col">Dono do repositorio</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (RepositoriosModel repositorio in Model)
+                {
+                    <tr>
+                        <th scope="row">@repositorio.Id</th>
+                        <td><a href="@Url.Action("Detalhes", "Repositorios", new { id = repositorio.Id })">@repositorio.Nome</a></td>
+                        <td>@repositorio.Descricao</td>
+                        <td>@repositorio.Linguagem</td>
+                        <td>@repositorio.DataAtualizacao</td>
+                        <td>@repositorio.Dono</td>
+                        <td>
+                            <div class="a-grid gap-2 d-md-flex justify-content-md-start" role="group">
+                                <a role="button" class="btn btn-primary" asp-route-id="@repositorio.Id" asp-controller="Repositorios" asp-action="Editar">Editar</a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@repositorio.Id" asp-controller="Repositorios" asp-action="Apagar">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+
+    </table>
+ 
+
+  
+
+</div>
+
