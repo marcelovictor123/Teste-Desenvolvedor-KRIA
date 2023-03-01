@@ -33,7 +33,7 @@
         @if (Model.Favorito)
         {
         <form asp-action="Desfavoritar" asp-route-id="@Model.Id">
-            <button type="submit" class="btn btn-primary">Remover dos favoritos</button>
+            <button type="submit" class="btn btn-danger">Remover dos favoritos</button>
         </form>
         }
         else

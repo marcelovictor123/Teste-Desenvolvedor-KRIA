@@ -4,13 +4,13 @@
 }
 <div class="text-center">
 
-    <h1 class="display-4">Cadastrar contato</h1>
+    <h1 class="display-4">Cadastrar repositorio</h1>
 
 </div>
 <form asp-controller="Repositorios" asp-action="Criar" method="post">
     <div class="mb-3">
         <label for="nome">Nome</label>
-        <input type="text" asp-for="Nome" class="form-control" placeholder="Digite o nome do contato">
+        <input type="text" asp-for="Nome" class="form-control" placeholder="Digite o nome do repositorio">
         @Html.ValidationMessageFor(x => x.Nome)
     </div>
 
@@ -40,5 +40,5 @@
     </div>
 
     <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
-    <a class="btn btn-secondary btn-block" asp-controller="RepositoriosController" asp-action="Index" role="button">Voltar</a>
+    <a class="btn btn-secondary btn-block" asp-controller="Repositorios" asp-action="Index" role="button">Voltar</a>
 </form>
